@@ -1,0 +1,127 @@
+<%- include('partials/head')%>
+<body class="d-flex flex-column 100vh">
+    <main class="container mt-5">
+        <%- include('partials/navbar')%>
+        <div class="row">
+            <h1 class="text-center mt-4 mb-3"> Welcome to the Clients Page</h1>
+                <table class="table table-hover mt-5 border p-4 bg-light shadow table-bordered">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col"> ClientID</th>
+                            <th scope="col"> First Name</th>
+                            <th scope="col"> Last Name</th>
+                            <th scope="col"> Phone Number</th>
+                            <th scope="col"> Email</th>
+                            <th scope="col"> Address</th>
+                        </tr>
+                    </thead>
+                    <tr class="table-success">
+                        <td>M12</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>(349) 123 - 4893</td>
+                        <td>jondoe@me.com</td>
+                        <td>123 S Main rd, Settlers, MD 83709</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    
+                    </tr>
+                    <tr class="table-primary">
+                        <td>M13</td>
+                        <td>Mary</td>
+                        <td>Smith</td>
+                        <td>(208) 123 - 4567</td>
+                        <td>smithmary@me.com</td>
+                        <td>456 N 1st St, Paris, TX 9345</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>M14</td>
+                        <td>Joe</td>
+                        <td>Logan</td>
+                        <td>(789) 123 - 8493</td>
+                        <td>joelogan@me.com</td>
+                        <td>373 S Rail rd, Hudson, GA 49804</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="table-warning">
+                        <td>M15</td>
+                        <td>Kyle</td>
+                        <td>Reed</td>
+                        <td>(657) 124 - 4489</td>
+                        <td>reedwinw@me.com</td>
+                        <td>788 S Stat rd, Borders, VA 56709</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 off-md-3">
+                    <div class="signup-form">
+                        <form action="" class="mt-5 border p-4 bg-light shadow mb-3">
+                            <h3 class="mb-4 text-secondary">Add Client</h3>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="Firstname">First Name</label>
+                                    <input type="text" name="Firstname" class="form-control" placeholder="First Name" id="Firstname">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="Lastname">Last Name</label>
+                                    <input type="text" name="Lastname" class="form-control" placeholder="Last Name" id="Lastname">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="Phonenum">Phone Number</label>
+                                    <input type="text" name="Phonenum" class="form-control" placeholder="Phone Number" id="Phonenum">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="Email">Email</label>
+                                    <input type="email" name="Email" class="form-control" placeholder="Email" id="Email">
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-9">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="address" id="address">
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="city">City</label>
+                                    <input type="text" name="city" class="form-control" placeholder="city" id="city">
+        
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="ST">State</label>
+                                    <input type="text" name="st" class="form-control" placeholder="st" id="st">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="Zipcode">Zip Code</label>
+                                    <input type="number" name="Zipcode" class="form-control" placeholder="Zipcode" id="Zipcode">
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary float-end">Add Client</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <%- include('partials/footer')%>
+    </main>
+</body>
+</html>
