@@ -12,8 +12,6 @@ const pool = mysql.createPool({
 });
 
 
-
-
 // View home page
 exports.view = (req, res) => {
     res.render('home')
