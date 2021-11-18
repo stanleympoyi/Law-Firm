@@ -10,8 +10,7 @@ const port = process.env.PORT || 1966;
 // const bodyParser = require('body-parser');
 
 // Parsing middleware 
-//Parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false}));
+
 app.use(express.urlencoded({extended: true}));
 
 
