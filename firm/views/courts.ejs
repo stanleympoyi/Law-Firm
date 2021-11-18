@@ -1,109 +1,60 @@
 <%- include('partials/head')%>
 <body class="d-flex flex-column vh-100">
     <main class="container mt-5">
-    <%- include('partials/navbar')%>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Res Judicata</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+              <a class="nav-link" href="/clients">Clients</a>
+              <a class="nav-link" href="/cases">Cases</a>
+              <a class="nav-link" href="/courts">Courts</a>
+              <a class="nav-link" href="/judges">Judges</a>
+            </div>
+            <form class="d-flex" method="POST" action="/courts" novalidate>
+              <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
     <h1 class="text-center mt-4 mb-3"> County Courts</h1>
         <table class="table table-hover mt-5 border p-4 bg-light shadow table-bordered table-striped">
             <thead>
                 <tr class="table-danger">
-                    <th> CourtID</th>
-                    <th> Court Name</th>
-                    <th> Address</th>
-                    <th> City</th>
-                    <th> State</th>
-                    <th> Zip Code</th>
+                    <th scope="col"> CourtID</th>
+                    <th scope="col"> Court Name</th>
+                    <th scope="col"> Address</th>
+                    <th scope="col"> City</th>
+                    <th scope="col"> State</th>
+                    <th scope="col"> Zip Code</th>
+                    <th scope="col" class="text-end"> Action</th>
                 </tr>
             </thead>
-            <tr class="table-warning">
-                <td>C100</td>
-                <td>Ada County Court</td>
-                <td>12 Front St</td>
-                <td>Boise</td>
-                <td>ID</td>
-                <td>83704</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr class="table-success">
-                <td>C102</td>
-                <td>Canyon County Court</td>
-                <td>12 2nd St</td>
-                <td>Nampa</td>
-                <td>ID</td>
-                <td>83703</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr class="table-warning">
-                <td>C103</td>
-                <td>Ada County Court</td>
-                <td>12 Front St</td>
-                <td>Boise</td>
-                <td>ID</td>
-                <td>83704</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr class="table-success">
-                <td>C104</td>
-                <td>Elmore County Court</td>
-                <td>12 Front St</td>
-                <td>Boise</td>
-                <td>ID</td>
-                <td>83704</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td> 
-            </tr>
+            <tbody>
+            <%rows.forEach(data => {%>    
+                <tr class="table-secondary">
+                    <td><%= data.courtID %></td>
+                    <td><%= data.court_name %></td>
+                    <td><%= data.address %></td>
+                    <td><%= data.city %></td>
+                    <td><%= data.state %></td>
+                    <td><%= data.zip_code %></td>
+                    <td class="text-end">
+                        <a href="/editcourt/<%= data.courtID %>" type="button" class="btn btn-primary btn-small"><i class="bi bi-pencil"></i>Edit</a>
+                        <a href="/courts/<%= data.courtID %>" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i>Delete</a>
+                    </td>
+                </tr>
+            <%})%>    
+            </tbody>
         </table>
-    </div>
-    <div class="container">
         <div class="row">
-            <div class="col-md-4 off-md-3">
-                <div class="signup-form">
-                    <form action="" class="mt-5 border p-4 bg-light shadow mb-3">
-                        <h3 class="mb-4 text-secondary">Add Court</h3>
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label for="CourtID">Court ID</label>
-                                <input type="text" name="CourtID" class="form-control" placeholder="CourtID" id="CourtID">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="Courtname">Court Name</label>
-                                <input type="text" name="Courtname" class="form-control" placeholder="Court Name" id="CourtID">
-                            </div>
-                            
-                        </div>
-                        <div class="mb-3 col-md-9">
-                            <label for="address">Address</label>
-                            <input type="text" name="address" class="form-control" placeholder="address" id="address">
-                        </div>
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label for="city">City</label>
-                                <input type="text" name="city" class="form-control" placeholder="city" id="city">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="ST">State</label>
-                                <input type="text" name="st" class="form-control" placeholder="st" id="st">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="Zipcode">Zip Code</label>
-                                <input type="number" name="Zipcode" class="form-control" placeholder="Zipcode" id="Zipcode">
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-primary float-end">Add Court</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="col-6 d-flex justify-content-end">
+                <a href="/addcourt" type="button" class="btn btn-primary align-self-center">+Add Court</a>
             </div>
         </div>
     </div>

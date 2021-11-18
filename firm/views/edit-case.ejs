@@ -1,0 +1,88 @@
+<%- include('partials/head')%>
+<body class="d-flex flex-column vh-100">
+    <main class="container mt-5">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Res Judicata</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                  <a class="nav-link" href="/clients">Clients</a>
+                  <a class="nav-link" href="/cases">Cases</a>
+                  <a class="nav-link" href="/courts">Courts</a>
+                  <a class="nav-link" href="/judges">Judges</a>
+                </div>
+                <form class="d-flex" method="POST" action="/cases" novalidate>
+                  <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/cases">Cases</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Cases</li>
+            </ol>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 off-md-3">
+                    <div class="signup-form">
+                        <%rows.forEach(data => {%>  
+                            <form method="POST" action="/editcase/<%= data.civil_action_number %>" class="mt-5 border p-4 bg-light shadow mb-3" novalidate>
+                                <h3 class="mb-4 text-secondary">Edit</h3>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="civil_action_number">Case Number</label>
+                                            <input type="text" name="civil_action_number" class="form-control" value="<%=data.civil_action_number%>" placeholder="Case Number" id="civil_action_number" >
+                                        </div>
+                                        <div class="mb-3 col-md-9">
+                                            <label for="judge">Judge Name</label>
+                                            <input type="text" name="judge" class="form-control" value="<%=data.judge%>" placeholder="judge" id="judge">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="plaint_name">Plaintiff Name</label>
+                                            <input type="text" name="plaint_name" class="form-control" value="<%=data.plaint_name%>" placeholder="Plaintiff Name" id="plaint_name">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="defend_name">Defendant Name</label>
+                                            <input type="text" name="defend_name" class="form-control" value="<%=data.defend_name%>" placeholder="Defendant Name" id="defend_name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="clientID">Client ID</label>
+                                            <input type="number" name="clientID" class="form-control" value="<%=data.clientID%>" placeholder="Client ID" id="ClientID">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="courtID">Court</label>
+                                            <input type="number" name="courtID" class="form-control" value="<%=data.courtID%>" placeholder="Court ID" id="courtID">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="civil">Civil</label>
+                                            <input type="text" name="civil" class="form-control" value="<%=data.civil%>" placeholder="civil" id="civil">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="criminal">Criminal</label>
+                                            <input type="text" name="criminal" class="form-control" value="<%= data.criminal %>" placeholder="Criminal" id="criminal">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary float-end" type="submit">Update Client</button>
+                                        </div>
+                                    </div>
+                            </form>
+                        <%})%> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

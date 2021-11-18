@@ -1,0 +1,59 @@
+<%- include('partials/head')%>
+<body class="d-flex flex-column 100vh">
+    <main class="container mt-5">
+        <%- include('partials/navbar')%>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/clients">Clients</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add clients</li>
+            </ol>
+        </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 off-md-3">
+            <div class="signup-form">
+                <form method="POST" action="/addclient" class="mt-5 border p-4 bg-light shadow mb-3">
+                    <h3 class="mb-4 text-secondary">Add Client</h3>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="client_name">Client Name</label>
+                            <input type="text" name="client_name" class="form-control" placeholder="Client Name" id="client_name">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="contact_name">Contact Name</label>
+                            <input type="text" name="contact_name" class="form-control" placeholder="Contact Name" id="contact_name">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="number" name="phone_number" class="form-control" placeholder="Phone Number" id="phone_number">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="email_address">Email</label>
+                            <input type="email" name="email_address" class="form-control" placeholder="Email" id="email_address">
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-9">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" class="form-control" placeholder="address" id="address">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" name="city" class="form-control" placeholder="city" id="city">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="state">State</label>
+                            <input type="text" name="state" class="form-control" placeholder="State" id="state">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="zip_code">Zip Code</label>
+                            <input type="number" name="zip_code" class="form-control" placeholder="Zip code" id="zip_code">
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary float-end">Add Client</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

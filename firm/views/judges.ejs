@@ -1,8 +1,28 @@
 <%- include('partials/head')%>
 <body class="d-flex flex-column vh-100">
     <main class="container mt-5">
-        <%- include('partials/navbar')%>
-        <h1 class="text-center mt-4 mb-3"> Judges Page</h1>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Res Judicata</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                  <a class="nav-link" href="/clients">Clients</a>
+                  <a class="nav-link" href="/cases">Cases</a>
+                  <a class="nav-link" href="/courts">Courts</a>
+                  <a class="nav-link" href="/judges">Judges</a>
+                </div>
+                <form class="d-flex" method="POST" action="/judges" novalidate>
+                  <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <h1 class="text-center mt-4 mb-3">Judges</h1>
         <table class="table table-hover mt-5 border p-4 bg-light shadow table-bordered">
             <thead>
                 <tr class="table-danger">
@@ -11,97 +31,34 @@
                     <th> Last Name</th>
                     <th> Court ID</th>
                     <th> Clerk</th>
+                    <th> Court Room Number</th>
                     <th> Phone Number</th>
                     <th> Email</th>
+                    <th scope="col" class="text-end"> Action</th>
                 </tr>
             </thead>
-
-        <tr class="table-primary">
-            <td>JD123</td>
-            <td>Jordan</td>
-            <td>Smith</td>
-            <td>C100</td>
-            <td>Ann Luke</td>
-            <td>(302) 456-9467</td>
-            <td>smithj@county.com</td>
-            <td>
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr class="table-secondary">
-            <td>JD125</td>
-            <td>Alex</td>
-            <td>Jones</td>
-            <td>C100</td>
-            <td>Heather Winter</td>
-            <td>(609) 345-8072</td>
-            <td>jonesa@county.com</td>
-            <td>
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr class="table-warning">
-            <td>JD126</td>
-            <td>Michael</td>
-            <td>Tate</td>
-            <td>C101</td>
-            <td>Sarah Mills</td>
-            <td>(407) 901-6534</td>
-            <td>tatem@county.com</td>
-            <td>
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
+            <tbody>
+                <%rows.forEach(data => {%>    
+                    <tr class="table-info">
+                        <td><%= data.judgeID %></td>
+                        <td><%= data.first_name %></td>
+                        <td><%= data.last_name %></td>
+                        <td><%= data.courtID %></td>
+                        <td><%= data.clerk %></td>
+                        <td><%= data.courtroom_num %></td>
+                        <td><%= data.phone_number %></td>
+                        <td><%= data.email_address %></td>
+                        <td class="text-end">
+                            <a href="/editjudge/<%= data.judgeID %>" type="button" class="btn btn-primary btn-small"><i class="bi bi-pencil"></i>Edit</a>
+                            <a href="/judges/<%= data.judgeID %>" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i>Delete</a>
+                        </td>
+                    </tr>
+                <%})%>    
+            </tbody>
         </table>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 off-md-3">
-                    <div class="signup-form">
-                        <form action="" class="mt-5 border p-4 bg-light shadow mb-3">
-                            <h3 class="mb-4 text-secondary">Add Judge</h3>
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="Firstname">First Name</label>
-                                    <input type="text" name="Firstname" class="form-control" placeholder="First Name" id="Firstname">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="Lastname">Last Name</label>
-                                    <input type="text" name="Lastname" class="form-control" placeholder="Last Name" id="Lastname">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="CourtID">Court ID</label>
-                                    <input type="text" name="CourtID" class="form-control" placeholder="Court ID" id="CourtID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="Email">Email</label>
-                                    <input type="email" name="Email" class="form-control" placeholder="Email" id="Email">
-                                </div>
-                            </div>
-                            <div class="mb-3 col-md-9">
-                                <label for="clerk">Clerk</label>
-                                <input type="text" name="clerk" class="form-control" placeholder="Enter Clerk Name" id="clerk">
-                            </div>
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="Phonenum">Phone Number</label>
-                                    <input type="text" name="Phonenum" class="form-control" placeholder="Phone number" id="Phonenum">
-        
-                                </div>
-                            
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary float-end">Add Judge</button>
-
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
+        <div class="row">
+            <div class="col-6 d-flex justify-content-end">
+                <a href="/addjudge" type="button" class="btn btn-primary align-self-center">+Add Judge</a>
             </div>
         </div>
     </main>

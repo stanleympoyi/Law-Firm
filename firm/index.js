@@ -1,51 +1,54 @@
 const express = require("express");
 const app = express()
 const path = require('path');
-const ejsMate = require('ejs-mate')
+const ejsMate = require('ejs-mate');
+const mysql= require('mysql');
+
+require('dotenv').config();
+
+const port = process.env.PORT || 1959;
+// const bodyParser = require('body-parser');
+
+// Parsing middleware 
+//Parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.urlencoded({extended: true}));
 
 
+// Parse appliction/json
+app.use(express.json());
+
+
+// Static Files
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Templating Engines
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
+//Connection Pool
+const pool = mysql.createPool({
+    connectionLimit : 100,
+    host            : process.env.DB_HOST,
+    user            : process.env.DB_USER,
+    password        : process.env.DB_PASS,
+    database        : process.env.DB_NAME
+});
 
-app.get('/clients', (req, res) => {
-    res.render('clients')
-})
+// Connect to DB
+pool.getConnection((err, connection) => {
+    if(err) throw err; // not connected
+    console.log('Connected as ID ' + connection.threadId);
+});
 
-app.get('/cases', (req, res) => {
-    res.render('cases')
-})
-
-app.get('/courts', (req, res) => {
-    res.render('courts')
-})
-
-app.get('/judges', (req, res) => {
-    res.render('judges')
-})
+const home = require('./server/routes/home')
+app.use('/', home);
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(300, () => {
-    console.log("listening on Port 300 .....")
-})
+app.listen(port, () => {
+    console.log(`listening on Port ${port} .....`)
+});

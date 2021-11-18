@@ -1,178 +1,66 @@
 <%- include('partials/head')%>
 <body class="d-flex flex-column vh-100">
 <main class="container mt-5">
-    <%- include('partials/navbar')%>
-    <h1 class="text-center mt-4 mb-3">Cases</h1>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Res Judicata</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+              <a class="nav-link" href="/clients">Clients</a>
+              <a class="nav-link" href="/cases">Cases</a>
+              <a class="nav-link" href="/courts">Courts</a>
+              <a class="nav-link" href="/judges">Judges</a>
+            </div>
+            <form class="d-flex" method="POST" action="/cases" novalidate>
+              <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <h1 class="text-center mt-4 mb-3"> Cases</h1>
     <table class="table table-hover mt-5 border p-4 bg-light shadow table-bordered table-striped table-primary">
         <thead>
             <tr class="table-danger">
-                <th>Case Action Num</th>
-                <th>Plaintiff ID</th>
-                <th>Defendant ID</th>
+                <th>Case Action Number</th>
+                <th>Plaintiff Name</th>
+                <th>Defendant Name</th>
                 <th>Client ID</th>
                 <th>Court ID</th>
                 <th>Judge</th>
                 <th>Civil</th>
                 <th>Criminal</th>
+                <th scope="col" class="text-end"> Action</th>
             </tr>
         </thead>
-        <tr>
-            <td>E12</td>
-            <td>P100</td>
-            <td>D34</td>
-            <td>M12</td>
-            <td>C100</td>
-            <td>Jordan Smith</td>
-            <td>Yes</td>
-            <td>No</td>
-        
-        </tr>
-        <tr>
-            <td>E13</td>
-            <td>P101</td>
-            <td>D35</td>
-            <td>M13</td>
-            <td>C101</td>
-            <td>Alex Jones</td>
-            <td>No</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>E14</td>
-            <td>P102</td>
-            <td>D36</td>
-            <td>M14</td>
-            <td>C102</td>
-            <td>Michael Tate</td>
-            <td>No</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>E15</td>
-            <td>P103</td>
-            <td>D37</td>
-            <td>M15</td>
-            <td>C103</td>
-            <td>Ryan Holmes</td>
-            <td>Yes</td>
-            <td>No</td>
-        </tr>
-        <tr>
-            <td>E16</td>
-            <td>P104</td>
-            <td>D38</td>
-            <td>M16</td>
-            <td>C104</td>
-            <td>Tony Blair</td>
-            <td>No</td>
-            <td>Yes</td>
-        </tr>
+        <tbody>
+            <%rows.forEach(data => {%>    
+                <tr class="table-success">
+                    <td><%= data.civil_action_number %></td>
+                    <td><%= data.plaint_name %></td>
+                    <td><%= data.defend_name %></td>
+                    <td><%= data.clientID %></td>
+                    <td><%= data.courtID %></td>
+                    <td><%= data.judge %></td>
+                    <td><%= data.civil %></td>
+                    <td><%= data.criminal %></td>
+                    <td class="text-end">
+                        <a href="/editcase/<%= data.civil_action_number %>" type="button" class="btn btn-primary btn-small"><i class="bi bi-pencil"></i>Edit</a>
+                        <a href="/cases/<%= data.civil_action_number %>" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i>Delete</a>
+                    </td>
+                </tr>
+            <%})%>    
+            </tbody>
     </table>
-
-    <!--<div class="container"> -->
-        <div class="row">
-                <div class="col-md-4 off-md-3">
-                    <div class="signup-form">
-                        <form action="" class="mt-5 border border-4 p-4 bg-light shadow mb-3">
-                            <h3 class="mb-4 text-secondary">Create Case</h3>
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="CaseID">Case Action ID</label>
-                                    <input type="text" name="CaseID" class="form-control" placeholder="CaseID" id="CaseID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="PlaintID">Plaintiff ID</label>
-                                    <input type="text" name="PlaintID" class="form-control" placeholder="Enter Plaintiff ID" id="PlaintID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="CourtID">Court ID</label>
-                                    <input type="text" name="CourtID" class="form-control" placeholder="Court ID" id="CourtID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="DefID">Defendant ID</label>
-                                    <input type="text" name="Defendant" class="form-control" placeholder="Enter Defendant ID" id="DefID">
-                                </div>
-                            </div>
-                            <div class="mb-3 col-md-9">
-                                <label for="clerk">Judge Name</label>
-                                <input type="text" name="clerk" class="form-control" placeholder="Enter Judge Full Name" id="clerk">
-                            </div>
-                            <div class="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                    Civil
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                    Criminal
-                                    </label>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary float-end">Create Case</button>
-
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4 off-md-5">
-                    <div class="signup-form">
-                        <form action="" class="mt-5 border border-4 p-4 bg-light shadow mb-3">
-                            <h3 class="mb-4 text-secondary">Update Case</h3>
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="CaseID">Case Action ID</label>
-                                    <input type="text" name="CaseID" class="form-control" placeholder="CaseID" id="CaseID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="PlaintID">Plaintiff ID</label>
-                                    <input type="text" name="PlaintID" class="form-control" placeholder="Enter Plaintiff ID" id="PlaintID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="CourtID">Court ID</label>
-                                    <input type="text" name="CourtID" class="form-control" placeholder="Court ID" id="CourtID">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="DefID">Defendant ID</label>
-                                    <input type="text" name="Defendant" class="form-control" placeholder="Enter Defendant ID" id="DefID">
-                                </div>
-                            </div>
-                            <div class="mb-3 col-md-9">
-                                <label for="clerk">Judge Name</label>
-                                <input type="text" name="clerk" class="form-control" placeholder="Enter Judge Full Name" id="clerk">
-                            </div>
-                            <div class="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                    Civil
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                    Criminal
-                                    </label>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-success float-end">Update Case</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>    
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-6 d-flex justify-content-end">
+            <a href="/addcase" type="button" class="btn btn-primary align-self-center">+Add Case</a>
         </div>
     </div>
-
-    
-    
-    </div>
-
 
 
 </main>
