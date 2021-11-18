@@ -6,7 +6,7 @@ const mysql= require('mysql');
 
 require('dotenv').config();
 
-const port = process.env.PORT || 1959;
+const port = process.env.PORT || 1966;
 // const bodyParser = require('body-parser');
 
 // Parsing middleware 
