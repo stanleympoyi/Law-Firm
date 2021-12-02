@@ -17,7 +17,7 @@
                 </div>
                 <form class="d-flex" method="POST" action="/judges" novalidate>
                   <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                  <button class="btn btn-outline-success" type="submit">Search Judges</button>
                 </form>
               </div>
             </div>
@@ -37,34 +37,34 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="first_name">First Name</label>
-                                    <input type="text" name="first_name" class="form-control" placeholder="First Name" id="first_name">
+                                    <input type="text" name="first_name" class="form-control" placeholder="First Name" id="first_name" required>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="last_name">Last Name</label>
-                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" id="last_name">
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" id="last_name" required>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="phone_number">Phone Number</label>
-                                    <input type="number" name="phone_number" class="form-control" placeholder="Phone number" id="phone_number">
+                                    <input type="number" name="phone_number" class="form-control" placeholder="Phone number" id="phone_number" required minlength="9" min="1">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="email_address">Email</label>
-                                    <input type="email" name="email_address" class="form-control" placeholder="Email" id="email_address">
+                                    <input type="email" name="email_address" class="form-control" placeholder="Email" id="email_address" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="clerk">Clerk</label>
-                                    <input type="text" name="clerk" class="form-control" placeholder="Enter Clerk Name" id="clerk">
+                                    <input type="text" name="clerk" class="form-control" placeholder="Enter Clerk Name" id="clerk" minlength="3">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="courtID">Court ID</label>
-                                    <input type="number" name="courtID" class="form-control" placeholder="Enter Court ID" id="courtID">
+                                    <input type="number" name="courtID" class="form-control" placeholder="Enter Court ID" id="courtID" required>
                                 </div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="courtroom_num">Room Number</label>
-                                <input type="text" name="courtroom_num" class="form-control" placeholder="Enter Court Room" id="courtroom_num">
+                                <input type="text" name="courtroom_num" class="form-control" placeholder="Enter Court Room" id="courtroom_num" required minlength="1">
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

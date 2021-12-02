@@ -17,7 +17,7 @@
                 </div>
                 <form class="d-flex" method="POST" action="/cases" novalidate>
                   <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                  <button class="btn btn-outline-success" type="submit">Search Cases</button>
                 </form>
               </div>
             </div>
@@ -32,46 +32,46 @@
             <div class="row">
                 <div class="col-md-4 off-md-3">
                     <div class="signup-form">
-                            <form method="POST" action="/addcase" class="mt-5 border p-4 bg-light shadow mb-3" novalidate>
+                            <form method="POST" action="/addcase" class="mt-5 border p-4 bg-light shadow mb-3" validate>
                                 <h3 class="mb-4 text-secondary">Add Case</h3>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="civil_action_number">Case Number</label>
-                                            <input type="text" name="civil_action_number" class="form-control"  placeholder="Case Number" id="civil_action_number">
+                                            <input type="text" name="civil_action_number" class="form-control"  placeholder="Case Number" id="civil_action_number" required>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="judge">Judge Name</label>
-                                            <input type="text" name="judge" class="form-control"  placeholder="judge" id="judge">
+                                            <input type="text" name="judge" class="form-control"  placeholder="judge" id="judge" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="plaint_name">Plaintiff Name</label>
-                                            <input type="text" name="plaint_name" class="form-control"  placeholder="Plaintiff Name" id="plaint_name">
+                                            <input type="text" name="plaint_name" class="form-control"  placeholder="Plaintiff Name" id="plaint_name" required>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="defend_name">Defendant Name</label>
-                                            <input type="text" name="defend_name" class="form-control"  placeholder="Defendant Name" id="defend_name">
+                                            <input type="text" name="defend_name" class="form-control"  placeholder="Defendant Name" id="defend_name" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="clientID">Client ID</label>
-                                            <input type="number" name="clientID" class="form-control"  placeholder="Client ID" id="ClientID">
+                                            <input type="number" name="clientID" class="form-control"  placeholder="Client ID" id="ClientID" required>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="courtID">Court</label>
-                                            <input type="number" name="courtID" class="form-control"  placeholder="Court ID" id="courtID">
+                                            <input type="number" name="courtID" class="form-control"  placeholder="Court ID" id="courtID" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="civil">Civil</label>
-                                            <input type="text" name="civil" class="form-control" placeholder="civil" id="civil">
+                                            <input type="text" name="civil" class="form-control" placeholder="civil" id="civil" required>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="criminal">Criminal</label>
-                                            <input type="text" name="criminal" class="form-control" placeholder="Criminal" id="criminal">
+                                            <input type="text" name="criminal" class="form-control" placeholder="Criminal" id="criminal" required>
                                         </div>
                                         <div class="col-md-12">
                                             <button class="btn btn-primary float-end" type="submit">Add Case</button>
